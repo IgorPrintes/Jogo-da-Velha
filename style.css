@@ -1,0 +1,192 @@
+/* Reset básico e fontes */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f0f2f5;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.main-container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+}
+
+header h1 {
+    color: #1a73e8;
+    margin-bottom: 1.5rem;
+}
+
+header {
+    position: relative;
+    padding-bottom: 1rem; /* Espaço para a área do usuário */
+}
+
+/* Placar */
+.scoreboard {
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-around;
+    background-color: #e8f0fe;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.scoreboard p {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* Tabuleiro do Jogo */
+.game-board {
+  display: inline-grid; /* Alterado para inline-grid para melhor centralização pelo container pai */
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows:    repeat(3, 100px);
+  gap: 10px;
+  position: relative; /* Necessário para posicionar a linha de vitória */
+}
+
+.cell {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Mantém as células quadradas */
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.cell:hover {
+    background-color: #d0d0d0;
+}
+
+.cell.x {
+    color: #d93025; /* Vermelho */
+}
+
+.cell.o {
+    color: #1a73e8; /* Azul */
+}
+
+/* Animação para quando a célula é marcada */
+@keyframes pop {
+    0% { transform: scale(0.6); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.cell.pop {
+    animation: pop 0.3s ease-out;
+}
+
+/* Estilo para as células da combinação vencedora */
+.cell.winning-cell {
+    background-color: #a5d6a7; /* Verde claro */
+    color: white;
+}
+
+/* --- Estilos da Linha de Vitória (Strike) --- */
+.strike {
+    position: absolute;
+    background-color: #d93025;
+    height: 4px;
+    display: none;
+}
+
+.strike.visible {
+    display: block;
+}
+
+/* Strike horizontal */
+.strike.horizontal {
+  top: calc(var(--row) * 110px + 50px);  /* 100px da célula + 10px do gap */
+  left: 0;
+  width: 320px;             /* 300px das células + 20px dos gaps */
+}
+
+/* Strike vertical */
+.strike.vertical {
+  left: calc(var(--col) * 110px + 50px); /* 100px da célula + 10px do gap */
+  top: 0;
+  width: 4px;
+  height: 320px;
+}
+
+/* Strike diagonal principal (↘) */
+.strike.diag1 {
+  top: 0;
+  left: 0;
+  width: 453px;   /* √(320²+320²) ≈ 453 */
+  transform: rotate(45deg) translateY(-2px);
+  transform-origin: top left;
+}
+/* Strike diagonal secundária (↙) */
+.strike.diag2 {
+  top: 0;
+  right: 0;
+  width: 453px;
+  transform: rotate(-45deg) translateY(-2px);
+  transform-origin: top right;
+}
+
+/* Área de Status e Controles */
+.status-area {
+    margin-top: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    min-height: 2rem; /* Evita que o layout pule */
+}
+
+.controls {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.controls button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #1a73e8;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.controls button:hover {
+    background-color: #155ab6;
+}
+
+/* Estilos para o botão de modo com ícone */
+#mode-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Espaço entre o ícone e o texto */
+}
+
+#mode-icon img {
+    width: 20px;
+    height: 20px;
+    /* O filtro invert(1) transforma o ícone preto em branco */
+    filter: invert(1);
+    vertical-align: middle; /* Alinha o ícone com o texto */
+}

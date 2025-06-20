@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Velha Online</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="main-container">
+        <header>
+            <h1>Jogo da Velha</h1>
+            <!-- A área de login/usuário foi removida -->
+        </header>
+
+        <div class="scoreboard">
+            <h2>Placar</h2>
+            <p>Jogador X: <span id="score-x">0</span></p>
+            <p>Jogador O: <span id="score-o">0</span></p>
+            <p>Empates: <span id="score-ties">0</span></p>
+        </div>
+
+        <div id="game-board" class="game-board">
+            <!-- Elemento para a linha de vitória -->
+            <div id="strike-line" class="strike"></div>
+            <!-- As 9 células do tabuleiro serão geradas pelo JavaScript -->
+            <div class="cell" data-index="0"></div>
+            <div class="cell" data-index="1"></div>
+            <div class="cell" data-index="2"></div>
+            <div class="cell" data-index="3"></div>
+            <div class="cell" data-index="4"></div>
+            <div class="cell" data-index="5"></div>
+            <div class="cell" data-index="6"></div>
+            <div class="cell" data-index="7"></div>
+            <div class="cell" data-index="8"></div>
+        </div>
+
+        <div class="status-area">
+            <p id="status-message">É a vez do Jogador X</p>
+        </div>
+
+        <div class="controls">
+            <button id="reset-button">Reiniciar Jogo</button>
+            <button id="mode-button">
+                <span id="mode-icon"></span>
+                <span id="mode-text"></span>
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Link para o arquivo JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
